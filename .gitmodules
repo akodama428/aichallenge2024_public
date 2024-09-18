@@ -1,0 +1,3 @@
+[submodule "aichallenge/workspace/src/aichallenge_submit/local_planner_custom/local_planner_custom/GraphBasedLocalTrajectoryPlanner"]
+	path = aichallenge/workspace/src/aichallenge_submit/local_planner_custom/local_planner_custom/GraphBasedLocalTrajectoryPlanner
+	url = https://github.com/akodama428/AIchallenge_Local_Planner.git

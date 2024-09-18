@@ -195,8 +195,13 @@
       </group> <!-- lane_driving -->
 
       <!-- Customizable -->
-      <node pkg="path_to_trajectory" exec="path_to_trajectory_node" name="path_to_trajectory" output="screen">
+      <!-- <node pkg="path_to_trajectory" exec="path_to_trajectory_node" name="path_to_trajectory" output="screen">
         <remap from="input" to="/planning/scenario_planning/lane_driving/behavior_planning/path_with_lane_id"/>
+        <remap from="output" to="/planning/scenario_planning/trajectory"/>
+      </node> -->
+
+      <node pkg="local_planner_custom" exec="local_planner_custom_node" name="local_planner_custom_node" output="screen">
+        <remap from="in_odom" to="/localization/kinematic_state"/>
         <remap from="output" to="/planning/scenario_planning/trajectory"/>
       </node>
 
@@ -204,11 +209,12 @@
   </group>
 
   <node pkg="simple_pure_pursuit" exec="simple_pure_pursuit" name="simple_pure_pursuit_node" output="screen">
-    <param name="use_external_target_vel" value="true"/>
+    <param name="use_external_target_vel" value="false"/>
     <param name="external_target_vel" value="8.0"/>
     <param name="lookahead_gain" value="0.3"/>
-    <param name="lookahead_min_distance" value="4.0"/>
+    <param name="lookahead_min_distance" value="1.0"/>
     <param name="speed_proportional_gain" value="1.0"/>
+    <param name="wheel_base" value="1.0"/>
 
     <remap from="input/kinematics" to="/localization/kinematic_state"/>
     <remap from="input/trajectory" to="/planning/scenario_planning/trajectory"/>
